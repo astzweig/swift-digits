@@ -6,20 +6,11 @@ struct DigitIterator<T: BinaryInteger>: IteratorProtocol, Sequence {
     init(_ number: T, usingBase base: T = 10) {
         self.number = number
         self.base = base
-        self.divisor = 1
-        self.adaptDivisorToDigitsCount()
+        self.divisor = self.number.highestPositionalFactor(usingBase: base)
     }
 
     func makeIterator() -> Self {
         return self
-    }
-
-    mutating func adaptDivisorToDigitsCount() {
-        var counter: T = self.number.countDigits(usingBase: self.base) - 1
-        while counter > 0 {
-            self.divisor *= self.base
-            counter -= 1
-        }
     }
 
     mutating func next() -> T? {

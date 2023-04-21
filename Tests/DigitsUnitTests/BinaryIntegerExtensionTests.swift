@@ -42,3 +42,25 @@ final class BinaryIntegerExtension_DigitsTests: XCTestCase {
         }
     }
 }
+
+final class BinaryIntegerExtension_HighestPositionalFactorTests: XCTestCase {
+    func testReturnsFactorForSingleDigitDecimal() {
+        let number = 8
+        XCTAssertEqual(number.highestPositionalFactor(), 1)
+    }
+
+    func testReturnsFactorForDoubleDigitDecimal() {
+        let number = 93
+        XCTAssertEqual(number.highestPositionalFactor(), 10)
+    }
+
+    func testReturnsFactorForSingleDigitHexadecimal() {
+        let number = 0xc
+        XCTAssertEqual(number.highestPositionalFactor(usingBase: 16), 1)
+    }
+
+    func testReturnsFactorForDoubleDigitHexadecimal() {
+        let number = 0x5d
+        XCTAssertEqual(number.highestPositionalFactor(usingBase: 16), 16)
+    }
+}

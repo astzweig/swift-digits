@@ -39,6 +39,25 @@ for digit in number.digits(usingBase: 16) {
 // prints 7 D E
 ```
 
+### Highest positional factor
+```swift
+print(12.highestPositionalFactor()) // 12 = 1 * 10 + 2 * 1
+// prints 10
+
+print(933.highestPositionalFactor()) // 933 = 9 * 100 + 3 * 10 + 3 * 1
+// prints 100
+```
+
+Or for getting the highest positional factor on another base:
+
+```swift
+print(0xc.highestPositionalFactor(usingBase: 16)) // 0xc = 12 * 1
+// prints 1
+
+print(0x5d.highestPositionalFactor(usingBase: 16)) // 0x5d = 5 * 16 + 13 * 1
+// prints 16
+```
+
 ## Adding `Digits` as a Dependency
 
 To use the `Digits` library in a SwiftPM project, 
