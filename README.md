@@ -3,8 +3,20 @@
 Swift Digits extends Swift's builtin integer types with useful methods that work on individual digits.
 
 ## Usage
+### Digits amount
+```swift
+let number = 2014
+print(number.countDigits())
+// prints 4
+```
 
-No methods added yet.
+Or for getting the digits on another base representation:
+
+```swift
+let number = 2014
+print(number.countDigits(usingBase: 16))
+// prints 3 (as 2014 = 0x7DE)
+```
 
 ## Adding `Digits` as a Dependency
 
