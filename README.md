@@ -18,6 +18,27 @@ print(number.countDigits(usingBase: 16))
 // prints 3 (as 2014 = 0x7DE)
 ```
 
+### Digits iterator
+```swift
+let number = 2014
+
+for digit in number.digits() {
+    print(digit)
+}
+// prints 2 0 1 4
+```
+
+Or for getting the digits on another base representation:
+
+```swift
+let number = 2014
+
+for digit in number.digits(usingBase: 16) {
+    print(digit)
+}
+// prints 7 D E
+```
+
 ## Adding `Digits` as a Dependency
 
 To use the `Digits` library in a SwiftPM project, 

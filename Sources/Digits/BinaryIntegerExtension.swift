@@ -9,4 +9,8 @@ extension BinaryInteger {
         }
         return exponent
     }
+
+    func digits(usingBase base: Self = 10) -> DigitIterator<Self> {
+        return DigitIterator(self, usingBase: base)
+    }
 }
