@@ -28,6 +28,19 @@ extension BinaryInteger {
         }
         return num
     }
+    
+    public func invertDigits(usingBase base: Self = 10) -> Self {
+        var num: Self = 0
+        var positionalValue: Self = self.highestPositionalFactor(usingBase: base)
+        let highestDigit = base - 1
+
+        for digit in self.digits(usingBase: base) {
+            let invertedDigit = highestDigit - digit
+            num += invertedDigit * positionalValue
+            positionalValue /= base
+        }
+        return num
+    }
 
     public func digits(usingBase base: Self = 10) -> DigitIterator<Self> {
         return DigitIterator(self, usingBase: base)

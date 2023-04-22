@@ -47,6 +47,15 @@ let _ = 2014.revertDigits() // returns 4102
 let _ = 0x7de.revertDigits(usingBase: 16) // returns 3799 or 0xed7
 ```
 
+### Digits inversion
+Invert each digit by substracting it from the highest possible digit, i.e.
+9 in the decimal system. So 0 becomes 9 = 9 - 0, 1 becomes 8 = 9 - 1, etc..
+
+```swift
+let _ = 2014.invertDigits() // returns 7985
+let _ = 0x7de.invertDigits(usingBase: 16) // returns 2081 or 0x821
+```
+
 ### Digits replacement
 Replaces all occurences of a digit with another digit.
 ```swift
