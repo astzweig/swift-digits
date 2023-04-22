@@ -3,17 +3,17 @@
 Swift Digits extends Swift's builtin integer types with useful methods that work on individual digits.
 
 ## Usage
+Digits are always relativ to a [base] of a [positional system]. All methods therefor
+take a `usingBase` parameter, which defaults to the base 10 i.e. the decimal system.
+
+[base]: https://en.wikipedia.org/wiki/Radix
+[positional system]: https://en.wikipedia.org/wiki/Positional_notation#Mathematics
+
 ### Digits amount
 ```swift
 let number = 2014
 print(number.countDigits())
 // prints 4
-```
-
-Or for getting the digits on another base representation:
-
-```swift
-let number = 2014
 print(number.countDigits(usingBase: 16))
 // prints 3 (as 2014 = 0x7DE)
 ```
@@ -26,13 +26,6 @@ for digit in number.digits() {
     print(digit)
 }
 // prints 2 0 1 4
-```
-
-Or for getting the digits on another base representation:
-
-```swift
-let number = 2014
-
 for digit in number.digits(usingBase: 16) {
     print(digit)
 }
@@ -41,14 +34,9 @@ for digit in number.digits(usingBase: 16) {
 
 ### Digits array
 ```swift
-let digits = 2014.asDigits()
+var digits = 2014.asDigits()
 // digits == [2, 0, 1, 4]
-```
-
-Or for getting the digits on another base representation:
-
-```swift
-let digits = 0xfde.asDigits(usingBase: 16)
+digits = 0xfde.asDigits(usingBase: 16)
 // digits == [0xf, 0xd, 0xe]
 ```
 
@@ -59,11 +47,7 @@ print(12.highestPositionalFactor()) // 12 = 1 * 10 + 2 * 1
 
 print(933.highestPositionalFactor()) // 933 = 9 * 100 + 3 * 10 + 3 * 1
 // prints 100
-```
 
-Or for getting the highest positional factor on another base:
-
-```swift
 print(0xc.highestPositionalFactor(usingBase: 16)) // 0xc = 12 * 1
 // prints 1
 
@@ -77,11 +61,7 @@ var counter = 1010
 // later in code
 counter.replaceDigit(0, with: 1)
 // counter == 1111
-```
 
-To replace digits on other base representation e.g. base-16 use:
-
-```swift
 var hexCounter = 0xf0
 // later in code
 hexCounter.replaceDigit(0xf, with: 0xc, usingBase: 16)
