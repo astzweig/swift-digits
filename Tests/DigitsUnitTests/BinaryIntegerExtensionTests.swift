@@ -34,7 +34,7 @@ final class BinaryIntegerExtension_DigitsTests: XCTestCase {
             XCTAssertEqual(digit, expectedDigits.removeFirst())
         }
     }
-    
+
     func testIteratesOverHexadecimalDigits() throws {
         var expectedDigits = [0x5, 0xd]
         for digit in 0x5d.digits(usingBase: 16) {
@@ -62,5 +62,27 @@ final class BinaryIntegerExtension_HighestPositionalFactorTests: XCTestCase {
     func testReturnsFactorForDoubleDigitHexadecimal() {
         let number = 0x5d
         XCTAssertEqual(number.highestPositionalFactor(usingBase: 16), 16)
+    }
+}
+
+final class BinaryIntegerExtension_ReplacingDigitsTests: XCTestCase {
+    func testReplacesDigitOfSingleDigitDecimal() throws {
+        let num = 8.replacingDigit(8, with: 7)
+        XCTAssertEqual(num, 7)
+    }
+
+    func testReplacesDigitOfTrippleDigitDecimal() throws {
+        let num = 158.replacingDigit(5, with: 9)
+        XCTAssertEqual(num, 198)
+    }
+
+    func testReplacesDigitOfSingleDigitHexadecimal() throws {
+        let num = 0xc.replacingDigit(0xc, with: 0xf, usingBase: 16)
+        XCTAssertEqual(num, 0xf)
+    }
+
+    func testReplacesDigitOfTrippleDigitHexadecimal() throws {
+        let num = 0x7DE.replacingDigit(0x7, with: 0xF, usingBase: 16)
+        XCTAssertEqual(num, 0xFDE)
     }
 }

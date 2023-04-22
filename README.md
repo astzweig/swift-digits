@@ -58,6 +58,30 @@ print(0x5d.highestPositionalFactor(usingBase: 16)) // 0x5d = 5 * 16 + 13 * 1
 // prints 16
 ```
 
+### Replace Digits
+```swift
+var counter = 1010
+// later in code
+counter.replaceDigit(0, with: 1)
+// counter == 1111
+```
+
+To replace digits on other base representation e.g. base-16 use:
+
+```swift
+var hexCounter = 0xf0
+// later in code
+hexCounter.replaceDigit(0xf, with: 0xc, usingBase: 16)
+// counter == 192 or 0xc0
+```
+
+Alternatively there is a non mutating method:
+
+```swift
+var counter = 1010.replacingDigit(0, with: 1)
+// counter == 1111
+```
+
 ## Adding `Digits` as a Dependency
 
 To use the `Digits` library in a SwiftPM project, 

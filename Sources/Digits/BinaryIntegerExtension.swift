@@ -23,4 +23,22 @@ extension BinaryInteger {
         }
         return positionalFactor
     }
+
+    mutating func replaceDigit(_ currentDigit: Self, with newDigit: Self, usingBase base: Self = 10) {
+        self = self.replacingDigit(currentDigit, with: newDigit, usingBase: base)
+    }
+
+    func replacingDigit(_ currentDigit: Self, with newDigit: Self, usingBase base: Self = 10) -> Self {
+        var num: Self = 0
+        var positionalValue: Self = self.highestPositionalFactor(usingBase: base)
+
+        for var digit in self.digits(usingBase: base) {
+            if digit == currentDigit {
+                digit = newDigit
+            }
+            num += digit * positionalValue
+            positionalValue /= base
+        }
+        return num
+    }
 }
