@@ -1,4 +1,4 @@
-struct DigitIterator<T: BinaryInteger>: IteratorProtocol, Sequence {
+public struct DigitIterator<T: BinaryInteger>: IteratorProtocol, Sequence {
     var number: T
     let base: T
     var divisor: T
@@ -9,11 +9,11 @@ struct DigitIterator<T: BinaryInteger>: IteratorProtocol, Sequence {
         self.divisor = self.number.highestPositionalFactor(usingBase: base)
     }
 
-    func makeIterator() -> Self {
+    public func makeIterator() -> Self {
         return self
     }
 
-    mutating func next() -> T? {
+    mutating public func next() -> T? {
         guard self.divisor > 0 else { return nil }
         let digit = self.number / self.divisor
         self.number = self.number % self.divisor

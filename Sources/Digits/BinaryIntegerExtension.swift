@@ -1,5 +1,5 @@
 extension BinaryInteger {
-    func countDigits(usingBase base: Self = 10) -> Self {
+    public func countDigits(usingBase base: Self = 10) -> Self {
         var quotient = self
         var exponent: Self = 0
 
@@ -10,11 +10,11 @@ extension BinaryInteger {
         return exponent
     }
 
-    func digits(usingBase base: Self = 10) -> DigitIterator<Self> {
+    public func digits(usingBase base: Self = 10) -> DigitIterator<Self> {
         return DigitIterator(self, usingBase: base)
     }
 
-    func asDigits(usingBase base: Self = 10) -> [Self] {
+    public func asDigits(usingBase base: Self = 10) -> [Self] {
         var digits: [Self] = []
         for digit in self.digits(usingBase: base) {
             digits.append(digit)
@@ -22,7 +22,7 @@ extension BinaryInteger {
         return digits
     }
 
-    func highestPositionalFactor(usingBase base: Self = 10) -> Self {
+    public func highestPositionalFactor(usingBase base: Self = 10) -> Self {
         var positionalFactor: Self = 1
         var counter = self.countDigits(usingBase: base) - 1
         while counter > 0 {
@@ -32,11 +32,11 @@ extension BinaryInteger {
         return positionalFactor
     }
 
-    mutating func replaceDigit(_ currentDigit: Self, with newDigit: Self, usingBase base: Self = 10) {
+    public mutating func replaceDigit(_ currentDigit: Self, with newDigit: Self, usingBase base: Self = 10) {
         self = self.replacingDigit(currentDigit, with: newDigit, usingBase: base)
     }
 
-    func replacingDigit(_ currentDigit: Self, with newDigit: Self, usingBase base: Self = 10) -> Self {
+    public func replacingDigit(_ currentDigit: Self, with newDigit: Self, usingBase base: Self = 10) -> Self {
         var num: Self = 0
         var positionalValue: Self = self.highestPositionalFactor(usingBase: base)
 
