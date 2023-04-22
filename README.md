@@ -27,6 +27,15 @@ print(number.sumDigits(usingBase: 16))
 // prints 34 (as 34 = 0x22 = 0x7 + 0xD + 0xE)
 ```
 
+### Digits Reversion
+```swift
+let number = 2014
+print(number.revertDigits())
+// prints 4102
+print(number.revertDigits(usingBase: 16))
+// prints 3799 (as 3799 = 0xED7 and 2014 = 0x7DE)
+```
+
 ### Digits iterator
 ```swift
 let number = 2014

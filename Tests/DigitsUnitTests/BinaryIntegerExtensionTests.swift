@@ -45,6 +45,28 @@ final class BinaryIntegerExtension_SumDigitsTests: XCTestCase {
     }
 }
 
+final class BinaryIntegerExtension_RevertDigitsTests: XCTestCase {
+    func testRevertsDigitsForSingleDigitDecimal() {
+        let number = 8
+        XCTAssertEqual(number.revertDigits(), 8)
+    }
+    
+    func testRevertsDigitsForQuadrupelDigitDecimal() {
+        let number = 2014
+        XCTAssertEqual(number.revertDigits(), 4102)
+    }
+    
+    func testRevertsDigitsForSingleDigitHexadecimal() {
+        let number = 0xd
+        XCTAssertEqual(number.revertDigits(usingBase: 16), 0xd)
+    }
+    
+    func testRevertsDigitsForQuadrupelDigitHexadecimal() {
+        let number = 0x7de
+        XCTAssertEqual(number.revertDigits(usingBase: 16), 0xed7)
+    }
+}
+
 final class BinaryIntegerExtension_DigitsTests: XCTestCase {
     func testReturnsIterator() throws {
         let _: any IteratorProtocol = 10.digits()

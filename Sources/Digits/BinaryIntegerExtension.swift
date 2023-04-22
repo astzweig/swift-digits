@@ -17,6 +17,17 @@ extension BinaryInteger {
         }
         return sum
     }
+    
+    public func revertDigits(usingBase base: Self = 10) -> Self {
+        var num: Self = 0
+        var positionalValue: Self = 1
+
+        for digit in self.digits(usingBase: base) {
+            num += digit * positionalValue
+            positionalValue *= base
+        }
+        return num
+    }
 
     public func digits(usingBase base: Self = 10) -> DigitIterator<Self> {
         return DigitIterator(self, usingBase: base)
