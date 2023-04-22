@@ -23,6 +23,28 @@ final class BinaryIntegerExtension_CountDigitsTests: XCTestCase {
     }
 }
 
+final class BinaryIntegerExtension_SumDigitsTests: XCTestCase {
+    func testSumsDigitsForSingleDigitDecimal() {
+        let number = 8
+        XCTAssertEqual(number.sumDigits(), 8)
+    }
+    
+    func testSumsDigitsForQuadrupelDigitDecimal() {
+        let number = 2014
+        XCTAssertEqual(number.sumDigits(), (2 + 0 + 1 + 4))
+    }
+    
+    func testSumsDigitsForSingleDigitHexadecimal() {
+        let number = 0xd
+        XCTAssertEqual(number.sumDigits(usingBase: 16), 0xd)
+    }
+    
+    func testSumsDigitsForQuadrupelDigitHexadecimal() {
+        let number = 0xf0d9
+        XCTAssertEqual(number.sumDigits(usingBase: 16), (0xf + 0x0 + 0xd + 0x9))
+    }
+}
+
 final class BinaryIntegerExtension_DigitsTests: XCTestCase {
     func testReturnsIterator() throws {
         let _: any IteratorProtocol = 10.digits()

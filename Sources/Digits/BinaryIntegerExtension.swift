@@ -9,6 +9,14 @@ extension BinaryInteger {
         }
         return exponent
     }
+    
+    public func sumDigits(usingBase base: Self = 10) -> Self {
+        var sum: Self = 0
+        for digit in self.digits(usingBase: base) {
+            sum += digit
+        }
+        return sum
+    }
 
     public func digits(usingBase base: Self = 10) -> DigitIterator<Self> {
         return DigitIterator(self, usingBase: base)

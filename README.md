@@ -18,6 +18,15 @@ print(number.countDigits(usingBase: 16))
 // prints 3 (as 2014 = 0x7DE)
 ```
 
+### Digits sum
+```swift
+let number = 2014
+print(number.sumDigits())
+// prints 7 (as 7 = 2 + 0 + 1 + 4)
+print(number.sumDigits(usingBase: 16))
+// prints 34 (as 34 = 0x22 = 0x7 + 0xD + 0xE)
+```
+
 ### Digits iterator
 ```swift
 let number = 2014
