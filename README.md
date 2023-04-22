@@ -9,81 +9,54 @@ take a `usingBase` parameter, which defaults to the base 10 i.e. the decimal sys
 [base]: https://en.wikipedia.org/wiki/Radix
 [positional system]: https://en.wikipedia.org/wiki/Positional_notation#Mathematics
 
+<details>
+<summary>Table of contents</summary>
+    
+- [Digits amount](#digits-amount)
+- [Digits sum](#digits-sum)
+- [Digits reversion](#digits-reversion)
+- [Digits replacement](#digits-replacement)
+- [Digits iterator](#digits-iterator)
+- [Digits array](#digits-array)
+- [Highest positional factor](#highest-positional-factor)
+- [Digits iterator](#digits-iterator)
+
+</details>
+
 ### Digits amount
+Counts the digits of the number.
+
 ```swift
-let number = 2014
-print(number.countDigits())
-// prints 4
-print(number.countDigits(usingBase: 16))
-// prints 3 (as 2014 = 0x7DE)
+let _ = 2014.countDigits() // returns 4
+let _ = 2014.countDigits(usingBase: 16) // returns 3, as 2014 = 0x7de
 ```
 
 ### Digits sum
+Calculats the sum of the digits.
+
 ```swift
-let number = 2014
-print(number.sumDigits())
-// prints 7 (as 7 = 2 + 0 + 1 + 4)
-print(number.sumDigits(usingBase: 16))
-// prints 34 (as 34 = 0x22 = 0x7 + 0xD + 0xE)
+let _ = 2014.sumDigits() // returns 7, as 7 = 2 + 0 + 1 + 4
+let _ = 0x7de.sumDigits(usingBase: 16) // returns 34 or 0x22, as 0x22 = 0x7 + 0xd + 0xe
 ```
 
-### Digits Reversion
+### Digits reversion
+Reverses the digit order.
+
 ```swift
-let number = 2014
-print(number.revertDigits())
-// prints 4102
-print(number.revertDigits(usingBase: 16))
-// prints 3799 (as 3799 = 0xED7 and 2014 = 0x7DE)
+let _ = 2014.revertDigits() // returns 4102
+let _ = 0x7de.revertDigits(usingBase: 16) // returns 3799 or 0xed7
 ```
 
-### Digits iterator
-```swift
-let number = 2014
-
-for digit in number.digits() {
-    print(digit)
-}
-// prints 2 0 1 4
-for digit in number.digits(usingBase: 16) {
-    print(digit)
-}
-// prints 7 D E
-```
-
-### Digits array
-```swift
-var digits = 2014.asDigits()
-// digits == [2, 0, 1, 4]
-digits = 0xfde.asDigits(usingBase: 16)
-// digits == [0xf, 0xd, 0xe]
-```
-
-### Highest positional factor
-```swift
-print(12.highestPositionalFactor()) // 12 = 1 * 10 + 2 * 1
-// prints 10
-
-print(933.highestPositionalFactor()) // 933 = 9 * 100 + 3 * 10 + 3 * 1
-// prints 100
-
-print(0xc.highestPositionalFactor(usingBase: 16)) // 0xc = 12 * 1
-// prints 1
-
-print(0x5d.highestPositionalFactor(usingBase: 16)) // 0x5d = 5 * 16 + 13 * 1
-// prints 16
-```
-
-### Replace Digits
+### Digits replacement
+Replaces all occurences of a digit with another digit.
 ```swift
 var counter = 1010
-// later in code
 counter.replaceDigit(0, with: 1)
 // counter == 1111
 
 var hexCounter = 0xf0
-// later in code
 hexCounter.replaceDigit(0xf, with: 0xc, usingBase: 16)
-// counter == 192 or 0xc0
+// counter == 0xc0 or 192
 ```
 
 Alternatively there is a non mutating method:
@@ -91,6 +64,49 @@ Alternatively there is a non mutating method:
 ```swift
 var counter = 1010.replacingDigit(0, with: 1)
 // counter == 1111
+```
+
+### Digits iterator
+Returns an iterator that goes over digits.
+
+```swift
+for digit in 2014.digits() {
+    print(digit)
+}
+// prints
+// 2
+// 0
+// 1
+// 4
+
+for digit in 0x7de.digits(usingBase: 16) {
+    print(digit)
+}
+// prints
+// 7
+// 13 or 0xd
+// 14 or 0xe
+```
+
+### Digits array
+Returns an array containing the digits of the number with the most significant
+digit at the beginning.
+
+```swift
+let _ = 2014.asDigits() // returns [2, 0, 1, 4]
+let _ = 0xfde.asDigits(usingBase: 16) // returns [15 or 0xf, 13 or 0xd, 14 or 0xe]
+```
+
+### Highest positional factor
+Returns the highest positional factor included in the number, i.e. the factor of
+the most significant digit.
+
+```swift
+let _ = 12.highestPositionalFactor() // returns 10, as 12 = 1 * 10 + 2 * 1
+let _ = 933.highestPositionalFactor()) // returns 100, as 933 = 9 * 100 + 3 * 10 + 3 * 1
+
+let _ = 0xc.highestPositionalFactor(usingBase: 16)) // returns 1, as 0xc = 12 * 1
+let _ = 0x5d.highestPositionalFactor(usingBase: 16)) // returns 16, as 0x5d = 5 * 16 + 13 * 1
 ```
 
 ## Adding `Digits` as a Dependency

@@ -18,7 +18,7 @@ final class BinaryIntegerExtension_CountDigitsTests: XCTestCase {
     }
 
     func testCountsDigitsForDoubleDigitHexadecimal() {
-        let number = 0x5D
+        let number = 0x5d
         XCTAssertEqual(number.countDigits(usingBase: 16), 2)
     }
 }
@@ -144,7 +144,7 @@ final class BinaryIntegerExtension_ReplacingDigitsTests: XCTestCase {
     }
 
     func testReplacesDigitOfTrippleDigitHexadecimal() throws {
-        let num = 0x7DE.replacingDigit(0x7, with: 0xF, usingBase: 16)
-        XCTAssertEqual(num, 0xFDE)
+        let num = 0x7de.replacingDigit(0x7, with: 0xf, usingBase: 16)
+        XCTAssertEqual(num, 0xfde)
     }
 }
