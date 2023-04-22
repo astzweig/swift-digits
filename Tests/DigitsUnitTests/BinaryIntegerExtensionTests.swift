@@ -43,6 +43,24 @@ final class BinaryIntegerExtension_DigitsTests: XCTestCase {
     }
 }
 
+final class BinaryIntegerExtension_AsDigitsTests: XCTestCase {
+    func testReturnsDigitsForSingleDigitDecimal() throws {
+        XCTAssertEqual(8.asDigits(), [8])
+    }
+
+    func testReturnsDigitsForTrippleDigitDecimal() throws {
+        XCTAssertEqual(158.asDigits(), [1, 5, 8])
+    }
+
+    func testReturnsDigitsForSingleDigitHexadecimal() throws {
+        XCTAssertEqual(0xd.asDigits(usingBase: 16), [0xd])
+    }
+
+    func testReturnsDigitsForTrippleDigitHexadecimal() throws {
+        XCTAssertEqual(0x7de.asDigits(usingBase: 16), [0x7, 0xd, 0xe])
+    }
+}
+
 final class BinaryIntegerExtension_HighestPositionalFactorTests: XCTestCase {
     func testReturnsFactorForSingleDigitDecimal() {
         let number = 8

@@ -14,6 +14,14 @@ extension BinaryInteger {
         return DigitIterator(self, usingBase: base)
     }
 
+    func asDigits(usingBase base: Self = 10) -> [Self] {
+        var digits: [Self] = []
+        for digit in self.digits(usingBase: base) {
+            digits.append(digit)
+        }
+        return digits
+    }
+
     func highestPositionalFactor(usingBase base: Self = 10) -> Self {
         var positionalFactor: Self = 1
         var counter = self.countDigits(usingBase: base) - 1

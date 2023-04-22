@@ -39,6 +39,19 @@ for digit in number.digits(usingBase: 16) {
 // prints 7 D E
 ```
 
+### Digits array
+```swift
+let digits = 2014.asDigits()
+// digits == [2, 0, 1, 4]
+```
+
+Or for getting the digits on another base representation:
+
+```swift
+let digits = 0xfde.asDigits(usingBase: 16)
+// digits == [0xf, 0xd, 0xe]
+```
+
 ### Highest positional factor
 ```swift
 print(12.highestPositionalFactor()) // 12 = 1 * 10 + 2 * 1
